@@ -26,6 +26,3 @@ This project requires no libraries other than glibc or other implementations of 
 
 # Contributing
 You can add new languages if you like. Just open a pull request!
-
-# Copyright
-The other members of the cro-pkg organization, and me, [legendary-cookie](https://github.com/legendary-cookie/) own all rights for the code contained in this repository.
