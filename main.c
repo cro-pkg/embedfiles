@@ -76,6 +76,15 @@ int main(int argc, char *argv[]) {
     fprintf(outfile, "};\n");
 
     fprintf(outfile, "const size_t %s_len = sizeof(%s);\n", argv[0], argv[0]);
+    char* headerfilename = concat(recover_filename(infile), ".h");
+    FILE* headerfile = fopen(headerfilename, "w");
+    free(headerfilename);
+    fprintf(headerfile, "#ifdef %s_H\n", argv[0]);
+    fprintf(headerfile, "#include <stdlib.h>\n");
+    fprintf(headerfile, "const char %s[];\n", argv[0]);
+    fprintf(headerfile, "const size_t %s_len;\n", argv[0]);
+    fprintf(headerfile, "#endif\n");
+    fclose(headerfile);
   }
   // Close the outfile again
   fclose(outfile);

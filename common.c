@@ -1,8 +1,24 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "common.h"
 
-char *concat(const char *s1, const char *s2) {
+
+// TODO: buffer overflow stuff?
+char * recover_filename(FILE * f) {
+  int fd;
+  char fd_path[255];
+  char * filename = malloc(255);
+  ssize_t n;
+
+  fd = fileno(f);
+  sprintf(fd_path, "/proc/self/fd/%d", fd);
+  n = readlink(fd_path, filename, 255);
+  if (n < 0)
+      return NULL;
+  filename[n] = '\0';
+  return filename;
+}
+
+
+char* concat(const char *s1, const char *s2) {
   const size_t len1 = strlen(s1);
   const size_t len2 = strlen(s2);
   char *result = malloc(len1 + len2 + 1); // +1 for the null-terminator
