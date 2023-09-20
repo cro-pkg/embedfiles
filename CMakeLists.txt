@@ -1,7 +1,0 @@
-cmake_minimum_required(VERSION 3.2.0)
-project(EmbedFiles)
-
-add_executable(embedfiles
-	main.c
-	common.c
-)
